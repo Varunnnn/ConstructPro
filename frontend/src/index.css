@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-size: 15px; /* Slightly scaled down base font size for crisp, compact typography */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-white text-neutral-900 min-h-screen text-xs sm:text-sm;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+@layer components {
+  /* Clean White & Gray Glassmorphic Cards */
+  .card {
+    @apply bg-white/90 rounded-2xl shadow-sm border border-neutral-200 backdrop-blur-md text-neutral-900;
+  }
+
+  .card-hover {
+    @apply card transition-all duration-200 hover:border-neutral-300 hover:shadow-md hover:bg-white;
+  }
+
+  /* Buttons (Strictly Black, White & Gray) */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-bold rounded-xl
+           transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-neutral-900/20
+           disabled:opacity-50 disabled:cursor-not-allowed select-none;
+  }
+
+  .btn-primary {
+    @apply btn bg-neutral-900 text-white hover:bg-neutral-800 active:scale-95 px-3.5 py-2 text-xs sm:text-sm min-h-[40px] shadow-sm;
+  }
+
+  .btn-secondary {
+    @apply btn bg-neutral-100 text-neutral-700 hover:bg-neutral-200 hover:text-neutral-900
+           active:scale-95 px-3.5 py-2 text-xs sm:text-sm min-h-[40px] border border-neutral-200;
+  }
+
+  .btn-outline {
+    @apply btn border border-neutral-300 text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900
+           active:scale-95 px-3.5 py-2 text-xs sm:text-sm min-h-[40px];
+  }
+
+  .btn-danger {
+    @apply btn bg-neutral-900 text-white border border-neutral-800 hover:bg-neutral-800
+           active:scale-95 px-3.5 py-2 text-xs sm:text-sm min-h-[40px];
+  }
+
+  .btn-sm {
+    @apply px-3 py-1.5 text-[11px] min-h-[32px];
+  }
+
+  .btn-lg {
+    @apply px-5 py-3 text-sm sm:text-base min-h-[48px];
+  }
+
+  .btn-icon {
+    @apply btn p-2 min-h-[40px] min-w-[40px];
+  }
+
+  /* Form elements */
+  .form-label {
+    @apply block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1;
+  }
+
+  .form-input {
+    @apply w-full px-3 py-2 bg-white border border-neutral-300 rounded-xl text-xs sm:text-sm
+           text-neutral-900 placeholder-neutral-400
+           focus:outline-none focus:border-neutral-900 focus:ring-1 focus:ring-neutral-900
+           transition-colors duration-150 min-h-[40px];
+  }
+
+  .form-input-error {
+    @apply form-input border-neutral-900 focus:ring-neutral-900;
+  }
+
+  .form-select {
+    @apply form-input cursor-pointer bg-white text-neutral-900;
+  }
+
+  .form-error {
+    @apply text-[11px] text-neutral-600 font-semibold mt-1;
+  }
+
+  .form-group {
+    @apply space-y-1;
+  }
+
+  /* Status Badges (Strict Monochrome Black & Gray) */
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold border;
+  }
+
+  .badge-active    { @apply badge bg-neutral-900 text-white border-neutral-900; }
+  .badge-planning  { @apply badge bg-neutral-100 text-neutral-800 border-neutral-300; }
+  .badge-on-hold   { @apply badge bg-neutral-200 text-neutral-700 border-neutral-300; }
+  .badge-completed { @apply badge bg-neutral-100 text-neutral-500 border-neutral-200; }
+  .badge-cancelled { @apply badge bg-neutral-800 text-neutral-200 border-neutral-700; }
+  .badge-present   { @apply badge bg-neutral-900 text-white border-neutral-900; }
+  .badge-half-day  { @apply badge bg-neutral-200 text-neutral-800 border-neutral-300; }
+  .badge-absent    { @apply badge bg-neutral-800 text-neutral-200 border-neutral-700; }
+
+  /* Attendance Toggle Buttons */
+  .att-btn {
+    @apply flex-1 py-2 px-3 rounded-xl text-xs font-bold border transition-all duration-150 flex items-center justify-center gap-1.5 cursor-pointer text-neutral-600 bg-white border-neutral-200 hover:bg-neutral-50 active:scale-95;
+  }
+  .att-btn[data-active="true"].att-btn-present {
+    @apply bg-neutral-900 text-white border-neutral-900 shadow-sm;
+  }
+  .att-btn[data-active="true"].att-btn-half {
+    @apply bg-neutral-700 text-white border-neutral-700 shadow-sm;
+  }
+  .att-btn[data-active="true"].att-btn-absent {
+    @apply bg-neutral-200 text-neutral-900 border-neutral-300 font-extrabold shadow-sm;
+  }
+
+  /* Page sections */
+  .page-header {
+    @apply mb-5;
+  }
+
+  .page-title {
+    @apply text-xl sm:text-2xl font-black text-neutral-900 tracking-tight;
+  }
+
+  .page-subtitle {
+    @apply text-xs sm:text-sm text-neutral-500 mt-0.5;
+  }
+
+  /* Financial number highlight */
+  .fin-value {
+    @apply text-xl sm:text-2xl font-extrabold text-neutral-900;
+  }
+
+  .fin-label {
+    @apply text-[11px] font-semibold text-neutral-500 uppercase tracking-wide;
+  }
+
+  /* Empty state */
+  .empty-state {
+    @apply flex flex-col items-center justify-center py-12 text-center;
+  }
+
+  .empty-state-icon {
+    @apply w-14 h-14 rounded-2xl bg-neutral-100 border border-neutral-200 flex items-center justify-center mb-3 text-neutral-500;
+  }
+
+  /* Dividers */
+  .divider {
+    @apply border-t border-neutral-200 my-4;
+  }
+
+  /* Mobile bottom nav safe area */
+  .mobile-safe-bottom {
+    @apply pb-[calc(3.5rem+env(safe-area-inset-bottom))];
+  }
+}
+
+@layer utilities {
+  .text-rupee::before {
+    content: '₹';
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Dotted Background Pattern Utility (White bg with subtle gray dots) */
+  .bg-dotted-pattern {
+    background-color: #ffffff;
+    background-image: radial-gradient(rgba(15, 23, 42, 0.12) 1.2px, transparent 1.2px);
+    background-size: 24px 24px;
+  }
+
+  .bg-dotted-pattern-light {
+    background-color: #ffffff;
+    background-image: radial-gradient(rgba(15, 23, 42, 0.08) 1.2px, transparent 1.2px);
+    background-size: 24px 24px;
+  }
+}
+
+/* Keyframe animations */
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.93) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-scale-in {
+  animation: scale-in 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
